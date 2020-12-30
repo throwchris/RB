@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Rose Bible</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://kit.fontawesome.com/d1a6249b79.js"></script>
+
+<script>
+  function fetch() {
+    // GET SEARCH TERM
+    var data = new FormData();
+    data.append('search', document.getElementById("search").value);
+    data.append('ajax', 1);
+    // AJAX SEARCH REQUEST
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', "search.php", true);
+    xhr.onload = function () {
+      if (this.status==200) {
+        var results = JSON.parse(this.response),
+            wrapper = document.getElementById("results");
+        wrapper.innerHTML = "";
+        if (results.length > 0) {
+          for(var res of results) {
+            var popup = document.createElement("div");
+            popup.innerHTML = res['name'] + " - " + res['definition'];
+            popup.classList.add("popup");
+            popup.onclick = function(){this.remove();};
+            document.body.appendChild(popup);
+          }
+        } else {
+          popup.innerHTML = "No results found";
+        }
+      } else {
+        alert("ERROR LOADING FILE!");
+      }
+    };
+    xhr.send(data);
+    return false;
+  }
+</script>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/d1a6249b79.js"></script>
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee, {font-size:200px}
+</style>
+
+<body>
+<!--
+  <script>
+       alert("It's The Fathers Good Pleasure To Give Us The Kingdom!!!  ")
+  </script>
+-->
+<!-- Navbar -->
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+<a class="navbar-brand" href="#">Navbar</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Dropdown
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </li>
+      </ul>
+  <form onsubmit="return fetch();">
+
+    <input type="text" id="search" required/>
+    <input type="submit" class="button" value="Search"/>
+  </form>
+  <div id="results"></div>
+</div>
+</nav>
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class=" w3-mobile w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 4</a>
+  </div>
+</div>
+<!-- Header -->
+<header class="w3-container w3-black w3-center" style="padding:128px 16px">
+
+      <h1 style="font-size: 60px" class="animate__animated animate__bounceInDown neon">The Book of Genesis</h1>
+      <p style="font-size: 30px" class="animate__animated animate__bounceInUp neon">1st Book of Moses</p>
+        <p style="font-size: 30px" class="animate__animated animate__bounceInUp neon">"For as by one man's disobedience many were made sinners, so by the obedience of one shall many be made righteous." Romans 5:19</p>
+
+<a href="genesis2.html"><button type="submit" class="button" style="margin:20px">Back Chapter</button></a>
+
+<a href=""><button type="submit" class="button" style="margin:20px">Next Chapter</button></a>
+</header>
+<!-- First Grid -->
+<div class="w3-row-padding w3-light-gray w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+      <h1 style="font-size: 50px" class="animate__animated animate__backInLeft"><em>Chapter 3</em></h1><br>
+      <h2 style="font-size: 45px" class="animate__animated animate__backInRight">The Fall of Adam and Eve.</h2><br>
+
+
+
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.25in; margin-bottom: 0in">
+	<FONT SIZE=5 STYLE="font-size: 20pt">3</FONT><FONT SIZE=4 STYLE="font-size: 16pt">
+	</FONT><FONT COLOR="#ff0000"><FONT SIZE=6 STYLE="font-size: 22pt"><I><B>N</B></I></FONT></FONT><FONT SIZE=5 STYLE="font-size: 20pt"><B>ow
+	the serpent was more subtil</B></FONT><FONT SIZE=4 STYLE="font-size: 16pt">
+	than any beast of the field which the Lord God had made. And he said
+	unto the woman, Yea, hath God said, Ye shall not eat of every tree
+	of the garden? </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">2</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+	the woman  said unto the serpent, We may eat of the fruit of the
+	trees of the garden: </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">3</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">but
+	of the fruit of the tree which is in the midst of the garden, God
+	hath said, Ye shall not eat of it, neither shall ye touch it, lest
+	ye die. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">4</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+	the serpent said unto the woman, Ye shall not surely die: </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">5</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">for
+	God doth know that in the day ye eat thereof, then your eyes shall
+	be opened, and ye shall be as gods, knowing good and evil. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">6</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+	when the woman saw that the tree was good for food, and that it was
+	pleasant to the eyes, and a tree to be desired to make one wise, she
+	took of the fruit thereof, and did eat, and gave also unto her
+	husband with her; and he did eat. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">7</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+	the eyes of them both were opened, and they knew that they were
+	naked; and they sewed fig leaves together, and made themselves
+	aprons. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">8</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+	they heard the voice of the Lord God walking in the garden in the
+	cool of the day: and Adam and his wife hid themselves from the
+	presence of the Lord God amongst the trees of the garden. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">9</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+	the Lord God called unto Adam, and said unto him, Where art thou?
+	</FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">10</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+	he said, I heard thy voice in the garden, and I was afraid, because
+	I was naked; and I hid myself. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">11</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+	he said, Who told thee that thou wast naked? Hast thou eaten of the
+	tree, whereof I commanded thee that thou shouldest not eat? </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">12</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+	the man said, The woman whom thou gavest to be with me, she gave me
+	of the tree, and I did eat. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">13</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+	the Lord God said unto the woman, What is this that thou hast done?
+	And the woman said, The serpent beguiled me, and I did eat. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">14</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+	the Lord God said unto the serpent, Because thou hast done this,
+	thou art cursed above all cattle, and above every beast of the
+	field; upon thy belly shalt thou go, and dust shalt thou eat all the
+	days of thy life: </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">15</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">and
+	I will put enmity between thee and the woman, and between thy seed
+	and her seed; it shall bruise thy head, and thou shalt bruise his
+	heel. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">16</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">Unto
+	the woman he said, I will greatly multiply thy sorrow and thy
+	conception; in sorrow thou shalt bring forth children; and thy
+	desire shall be to thy husband, and he shall rule over thee. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">17</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+	unto Adam he said, Because thou hast hearkened unto the voice of thy
+	wife, and hast eaten of the tree, of which I commanded thee, saying,
+	Thou shalt not eat of it: cursed is the ground for thy sake; in
+	sorrow shalt thou eat of it all the days of thy life; </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">18</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">thorns
+	also and thistles shall it bring forth to thee; and thou shalt eat
+	the herb of the field; </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">19</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">in
+	the sweat of thy face shalt thou eat bread, till thou return unto
+	the ground; for out of it wast thou taken: for dust thou art, and
+	unto dust shalt thou return. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">20</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+	Adam called his wife's name Eve; because she was the mother of all
+	living. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">21</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">Unto
+	Adam also and to his wife did the Lord God make coats of skins, and
+	clothed them. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">22</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+	the Lord God said, Behold, the man is become as one of us, to know
+	good and evil: and now, lest he put forth his hand, and take also of
+	the tree of life, and eat, and live for ever: </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">23</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">therefore
+	the Lord God sent him forth from the garden of Eden, to till the
+	ground from whence he was taken. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">24</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">So
+	he drove out the man; and he placed at the east of the garden of
+	Eden Cherubims, and a flaming sword which turned every way, to keep
+	the way of the tree of life. </FONT>
+	</P>
+
+
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-cloud-sun w3-padding-64 w3-text-red w3-animate-fading" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-cloud-sun w3-padding-64 w3-text-light-gray" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-cloud-sun w3-padding-64 w3-text-red w3-animate-fading" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-cloud-sun w3-padding-64 w3-text-light-gray" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-cloud-sun w3-padding-64 w3-text-red w3-animate-fading" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-cloud-sun w3-padding-64 w3-text-light-gray" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-cloud-sun w3-padding-64 w3-text-red w3-animate-fading" style="font-size: 200px"></i>
+    </div>
+
+
+
+  </div>
+</div>
+<!-- Second Grid -->
+
+<div class="w3-container w3-black w3-center w3-padding-64 neon">
+    <h1 style="font-size: 50px">Everlasting Life: Its not passed out like peanuts.</h1>
+</div>
+<!-- Footer -->
+
+<script>
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html>
