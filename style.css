@@ -136,3 +136,21 @@ p {
   .col-11 {width: 91.66%;}
   .col-12 {width: 100%;}
 }
+
+/* Rosebible KingJames Version text color shadow*/
+.textShadow {
+
+    text-shadow: -1px 0 red, 0 1px red, 1px 0 red, 0 -1px red;
+}
+
+/* newTestament Dropdown menu color style*/
+.ntddShadow {
+
+    text-shadow: -1px 0 blue, 0 1px blue, 1px 0 blue, 0 -1px blue;
+}
+/* Old Testament book dropdown color style*/
+.otddShadow {
+
+    text-shadow: -1px 0 green, 0 1px green, 1px 0 green, 0 -1px green;
+}
+
