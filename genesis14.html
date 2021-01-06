@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Rose Bible</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="https://kit.fontawesome.com/d1a6249b79.js"></script>
+
+<script>
+  function fetch() {
+    // GET SEARCH TERM
+    var data = new FormData();
+    data.append('search', document.getElementById("search").value);
+    data.append('ajax', 1);
+    // AJAX SEARCH REQUEST
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', "search.php", true);
+    xhr.onload = function () {
+      if (this.status==200) {
+        var results = JSON.parse(this.response),
+            wrapper = document.getElementById("results");
+        wrapper.innerHTML = "";
+        if (results.length > 0) {
+          for(var res of results) {
+            var popup = document.createElement("div");
+            popup.innerHTML = res['name'] + " - " + res['definition'];
+            popup.classList.add("popup");
+            popup.onclick = function(){this.remove();};
+            document.body.appendChild(popup);
+          }
+        } else {
+          popup.innerHTML = "No results found";
+        }
+      } else {
+        alert("ERROR LOADING FILE!");
+      }
+    };
+    xhr.send(data);
+    return false;
+  }
+</script>
+<link rel="stylesheet" href="genesis.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/d1a6249b79.js"></script>
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee, {font-size:200px}
+</style>
+
+<body>
+
+
+
+<!--
+  <script>
+       alert("It's The Fathers Good Pleasure To Give Us The Kingdom!!!  ")
+  </script>
+-->
+<!-- Navbar -->
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+<a class="navbar-brand textShadow" href="#">Rose Bible</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="navbar-nav mr-auto">
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle ntddShadow" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        New Testament
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="#">Matthew</a>
+        <a class="dropdown-item" href="#">Mark</a>
+        <a class="dropdown-item" href="#">Luke</a>
+        <a class="dropdown-item" href="#">John</a>
+        <a class="dropdown-item" href="#">Acts</a>
+        <a class="dropdown-item" href="#">Romans</a>
+        <a class="dropdown-item" href="#">1 Corinthians</a>
+        <a class="dropdown-item" href="#">2 Corinthians</a>
+        <a class="dropdown-item" href="#">Galatians</a>
+        <a class="dropdown-item" href="#">Ephesians</a>
+        <a class="dropdown-item" href="#">Philippians</a>
+        <a class="dropdown-item" href="#">Colosians</a>
+        <a class="dropdown-item" href="#">1 Thessalonians</a>
+        <a class="dropdown-item" href="#">2 Thessalonians</a>
+        <a class="dropdown-item" href="#">1 Timothy</a>
+        <a class="dropdown-item" href="#">2 Timothy</a>
+        <a class="dropdown-item" href="#">Titus</a>
+        <a class="dropdown-item" href="#">Philemon</a>
+        <a class="dropdown-item" href="#">Hebrews</a>
+        <a class="dropdown-item" href="#">James</a>
+        <a class="dropdown-item" href="#">1 Peter</a>
+        <a class="dropdown-item" href="#">2 Peter</a>
+        <a class="dropdown-item" href="#">1 John</a>
+        <a class="dropdown-item" href="#">2 John</a>
+        <a class="dropdown-item" href="#">3 John</a>
+        <a class="dropdown-item" href="#">Jude</a>
+        <a class="dropdown-item" href="#">Revelation</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </li>
+    <li class="nav-item dropdown">
+      <a id="genesis"class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Genesis Chapters
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="genesis1.html">Chapter1</a>
+        <a class="dropdown-item" href="genesis2.html">Chapter2</a>
+        <a class="dropdown-item" href="genesis3.html">Chapter3</a>
+        <a class="dropdown-item" href="genesis4.html">Chapter4</a>
+        <a class="dropdown-item" href="genesis5.html">Chapter5</a>
+        <a class="dropdown-item" href="genesis6.html">Chapter6</a>
+        <a class="dropdown-item" href="genesis7.html">Chapter7</a>
+        <a class="dropdown-item" href="genesis8.html">Chapter8</a>
+        <a class="dropdown-item" href="genesis9.html">Chapter9</a>
+        <a class="dropdown-item" href="genesis10.html">Chapter10</a>
+        <a class="dropdown-item" href="genesis11.html">Chapter11</a>
+        <a class="dropdown-item" href="genesis12.html">Chapter12</a>
+        <a class="dropdown-item" href="genesis13.html">Chapter13</a>
+        <a class="dropdown-item" href="genesis14.html">Chapter14</a>
+        <a class="dropdown-item" href="genesis15.html">Chapter15</a>
+        <a class="dropdown-item" href="genesis16.html">Chapter16</a>
+        <a class="dropdown-item" href="genesis17.html">Chapter17</a>
+        <a class="dropdown-item" href="genesis18.html">Chapter18</a>
+        <a class="dropdown-item" href="genesis19.html">Chapter19</a>
+        <a class="dropdown-item" href="genesis20.html">Chapter20</a>
+        <a class="dropdown-item" href="genesis21.html">Chapter21</a>
+        <a class="dropdown-item" href="genesis22.html">Chapter22</a>
+        <a class="dropdown-item" href="genesis23.html">Chapter23</a>
+        <a class="dropdown-item" href="genesis24.html">Chapter24</a>
+        <a class="dropdown-item" href="genesis25.html">Chapter25</a>
+        <a class="dropdown-item" href="genesis26.html">Chapter26</a>
+        <a class="dropdown-item" href="genesis27.html">Chapter27</a>
+        <a class="dropdown-item" href="genesis28.html">Chapter28</a>
+        <a class="dropdown-item" href="genesis29.html">Chapter29</a>
+        <a class="dropdown-item" href="genesis30.html">Chapter30</a>
+        <a class="dropdown-item" href="genesis31.html">Chapter31</a>
+        <a class="dropdown-item" href="genesis32.html">Chapter32</a>
+        <a class="dropdown-item" href="genesis33.html">Chapter33</a>
+        <a class="dropdown-item" href="genesis34.html">Chapter34</a>
+        <a class="dropdown-item" href="genesis35.html">Chapter35</a>
+        <a class="dropdown-item" href="genesis36.html">Chapter36</a>
+        <a class="dropdown-item" href="genesis37.html">Chapter37</a>
+        <a class="dropdown-item" href="genesis38.html">Chapter38</a>
+        <a class="dropdown-item" href="genesis39.html">Chapter39</a>
+        <a class="dropdown-item" href="genesis40.html">Chapter40</a>
+        <a class="dropdown-item" href="genesis41.html">Chapter41</a>
+        <a class="dropdown-item" href="genesis42.html">Chapter42</a>
+        <a class="dropdown-item" href="genesis43.html">Chapter43</a>
+        <a class="dropdown-item" href="genesis44.html">Chapter44</a>
+        <a class="dropdown-item" href="genesis45.html">Chapter45</a>
+        <a class="dropdown-item" href="genesis46.html">Chapter46</a>
+        <a class="dropdown-item" href="genesis47.html">Chapter47</a>
+        <a class="dropdown-item" href="genesis48.html">Chapter48</a>
+        <a class="dropdown-item" href="genesis49.html">Chapter49</a>
+        <a class="dropdown-item" href="genesis50.html">Chapter50</a>
+
+
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </li>
+    </ul>
+
+  <form onsubmit="return fetch();">
+
+    <input type="text" id="search" required/>
+    <input type="submit" class="button" value="Search"/>
+  </form>
+  <div id="results"></div>
+</div>
+</nav>
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 4</a>
+  </div>
+</div>
+<!-- Header -->
+<header class="w3-container w3-black w3-center w3-padding-64" >
+
+      <p id="genesis" style="font-size: 10vw" class="animate__animated animate__bounceInDown animate__delay-3s">GENESIS<p>
+      <p id="genesis" style="font-size: 45px" class="animate__animated animate__bounceInRight animate__delay-1s">Chapter 14</p>
+      <p style="font-size: 30px" class="animate__animated animate__bounceInUp neon animate__delay-4s">"As he saith also in another place, Thou art a priest for ever after the order of Melchisedec."<span style="font-size: 16px">Hebrews 5:6</span></p>
+
+<a href="genesis13.html"><button type="submit" class="button" style="margin:12px">Back Chapter</button></a>
+
+<a href="genesis15.html"><button type="submit" class="button" style="margin:12px">Next Chapter</button></a>
+
+</header>
+<!-- First Grid -->
+<div class="w3-row-padding w3-light-gray w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+
+      <h2 style="font-size: 45px" class="animate__animated animate__backInRight"><strong>Melchizedek Brings Bread And Wine</strong></h2><br>
+
+
+<!--
+    Paragraph tag goes here for chapter.
+-->
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.25in; margin-bottom: 0in">
+<FONT SIZE=5 STYLE="font-size: 20pt"></FONT><FONT SIZE=4 STYLE="font-size: 16pt">
+</FONT><FONT COLOR="#ff0000"><FONT SIZE=6 STYLE="font-size: 22pt"><I><B>A</B></I></FONT></FONT><FONT SIZE=5 STYLE="font-size: 20pt"><B>nd
+it came to pass in the days of Amraphel</B></FONT><FONT SIZE=4 STYLE="font-size: 16pt">
+king of Shinar, Arioch king of Ellasar, Chedorlaomer king of Elam,
+and Tidal king of nations; </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">2</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">that
+these made war with Bera king of Sodom, and with Birsha king of
+Gomorrah, Shinab king of Admah, and Shemeber king of Zeboiim, and
+the king of Bela, which is Zoar. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">3</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">All
+these were joined together in the vale of Siddim, which is the salt
+sea. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">4</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">Twelve
+years they served Chedorlaomer, and in the thirteenth year they
+rebelled. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">5</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+in the fourteenth year came Chedorlaomer, and the kings that were
+with him, and smote the Rephaims in Ashteroth Karnaim, and the
+Zuzims in Ham, and the Emims in Shaveh Kiriathaim, </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">6</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">and
+the Horites in their mount Seir, unto El-paran, which is by the
+wilderness. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">7</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+they returned, and came to En-mishpat, which is Kadesh, and smote
+all the country of the Amalekites, and also the Amorites that dwelt
+in Hazezon-tamar. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">8</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+there went out the king of Sodom, and the king of Gomorrah, and the
+king of Admah, and the king of Zeboiim, and the king of Bela (the
+same is Zoar;) and they joined battle with them in the vale of
+Siddim; </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">9</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">with
+Chedorlaomer the king of Elam, and with Tidal king of nations, and
+Amraphel king of Shinar, and Arioch king of Ellasar; four kings with
+five. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">10</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+the vale of Siddim was full of slimepits; and the kings of Sodom and
+Gomorrah fled, and fell there; and they that remained fled to the
+mountain. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">11</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+they took all the goods of Sodom and Gomorrah, and all their
+victuals, and went their way. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">12</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+they took Lot, Abram's brother's son, who dwelt in Sodom, and his
+goods, and departed. </FONT>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.25in; margin-bottom: 0in">
+<SUP><FONT SIZE=4 STYLE="font-size: 16pt">13</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+there came one that had escaped, and told Abram the Hebrew; for he
+dwelt in the plain of Mamre the Amorite, brother of Eshcol, and
+brother of Aner: and these were confederate with Abram. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">14</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+when Abram heard that his brother was taken captive, he armed his
+trained servants, born in his own house, three hundred and eighteen,
+and pursued them unto Dan. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">15</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+he divided himself against them, he and his servants, by night, and
+smote them, and pursued them unto Hobah, which is on the left hand
+of Damascus. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">16</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+he brought back all the goods, and also brought again his brother
+Lot, and his goods, and the women also, and the people. </FONT>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.25in; margin-bottom: 0in">
+<SUP><FONT SIZE=4 STYLE="font-size: 16pt">17</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+the king of Sodom went out to meet him after his return from the
+slaughter of Chedorlaomer, and of the kings that were with him, at
+the valley of Shaveh, which is the king's dale. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">18</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+Melchizedek king of Salem brought forth bread and wine: and he was
+the priest of the most high God. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">19</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+he blessed him, and said, Blessed be Abram of the most high God,
+possessor of heaven and earth: </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">20</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">and
+blessed be the most high God, which hath delivered thine enemies
+into thy hand. And he gave him tithes of all. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">21</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+the king of Sodom said unto Abram, Give me the persons, and take the
+goods to thyself. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">22</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+Abram said to the king of Sodom, I have lift up mine hand unto the
+Lord, the most high God, the possessor of heaven and earth, </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">23</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">that
+I will not take from a thread even to a shoelatchet, and that I will
+not take any thing that is thine, lest thou shouldest say, I have
+made Abram rich: </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">24</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">save
+only that which the young men have eaten, and the portion of the men
+which went with me, Aner, Eshcol, and Mamre; let them take their
+portion. </FONT>
+</P>
+
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-bread-slice w3-padding-64 w3-text-brown w3-animate-fading" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-cloud-sun w3-padding-64 w3-text-light-gray" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-wine-glass-alt w3-padding-64 w3-text-red w3-animate-fading" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-cloud-sun w3-padding-64 w3-text-light-gray" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-bread-slice w3-padding-64 w3-text-brown w3-animate-fading" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-cloud-sun w3-padding-64 w3-text-light-gray" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-wine-glass-alt w3-padding-64 w3-text-red w3-animate-fading" style="font-size: 200px"></i>
+    </div>
+
+
+  </div>
+</div>
+<!-- Second Grid -->
+
+<div id="genesis" class="w3-container w3-black w3-center w3-padding-64">
+      <h1 style="font-size: 60px">"Quote Goes Here"<p>Rose M. Aluli</p></h1>
+      <a href="genesis13.html"><button type="submit" class="button" style="margin:20px">Back Chapter</button></a>
+
+      <a href="genesis15.html"><button type="submit" class="button" style="margin:20px">Next Chapter</button></a>
+</div>
+<!-- Footer -->
+
+<script>
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html>
