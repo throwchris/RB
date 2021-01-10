@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Rose Bible</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="https://kit.fontawesome.com/d1a6249b79.js"></script>
+
+<script>
+  function fetch() {
+    // GET SEARCH TERM
+    var data = new FormData();
+    data.append('search', document.getElementById("search").value);
+    data.append('ajax', 1);
+    // AJAX SEARCH REQUEST
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', "search.php", true);
+    xhr.onload = function () {
+      if (this.status==200) {
+        var results = JSON.parse(this.response),
+            wrapper = document.getElementById("results");
+        wrapper.innerHTML = "";
+        if (results.length > 0) {
+          for(var res of results) {
+            var popup = document.createElement("div");
+            popup.innerHTML = res['name'] + " - " + res['definition'];
+            popup.classList.add("popup");
+            popup.onclick = function(){this.remove();};
+            document.body.appendChild(popup);
+          }
+        } else {
+          popup.innerHTML = "No results found";
+        }
+      } else {
+        alert("ERROR LOADING FILE!");
+      }
+    };
+    xhr.send(data);
+    return false;
+  }
+</script>
+<link rel="stylesheet" href="genesis.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/d1a6249b79.js"></script>
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee, {font-size:200px}
+</style>
+
+<body>
+
+
+
+<!--
+  <script>
+       alert("It's The Fathers Good Pleasure To Give Us The Kingdom!!!  ")
+  </script>
+-->
+<!-- Navbar -->
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+<a class="navbar-brand textShadow" href="#">Rose Bible</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="navbar-nav mr-auto">
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle ntddShadow" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        New Testament
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="#">Matthew</a>
+        <a class="dropdown-item" href="#">Mark</a>
+        <a class="dropdown-item" href="#">Luke</a>
+        <a class="dropdown-item" href="#">John</a>
+        <a class="dropdown-item" href="#">Acts</a>
+        <a class="dropdown-item" href="#">Romans</a>
+        <a class="dropdown-item" href="#">1 Corinthians</a>
+        <a class="dropdown-item" href="#">2 Corinthians</a>
+        <a class="dropdown-item" href="#">Galatians</a>
+        <a class="dropdown-item" href="#">Ephesians</a>
+        <a class="dropdown-item" href="#">Philippians</a>
+        <a class="dropdown-item" href="#">Colosians</a>
+        <a class="dropdown-item" href="#">1 Thessalonians</a>
+        <a class="dropdown-item" href="#">2 Thessalonians</a>
+        <a class="dropdown-item" href="#">1 Timothy</a>
+        <a class="dropdown-item" href="#">2 Timothy</a>
+        <a class="dropdown-item" href="#">Titus</a>
+        <a class="dropdown-item" href="#">Philemon</a>
+        <a class="dropdown-item" href="#">Hebrews</a>
+        <a class="dropdown-item" href="#">James</a>
+        <a class="dropdown-item" href="#">1 Peter</a>
+        <a class="dropdown-item" href="#">2 Peter</a>
+        <a class="dropdown-item" href="#">1 John</a>
+        <a class="dropdown-item" href="#">2 John</a>
+        <a class="dropdown-item" href="#">3 John</a>
+        <a class="dropdown-item" href="#">Jude</a>
+        <a class="dropdown-item" href="#">Revelation</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </li>
+    <li class="nav-item dropdown">
+      <a id="genesis"class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Genesis Chapters
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="genesis1.html">Chapter1</a>
+        <a class="dropdown-item" href="genesis2.html">Chapter2</a>
+        <a class="dropdown-item" href="genesis3.html">Chapter3</a>
+        <a class="dropdown-item" href="genesis4.html">Chapter4</a>
+        <a class="dropdown-item" href="genesis5.html">Chapter5</a>
+        <a class="dropdown-item" href="genesis6.html">Chapter6</a>
+        <a class="dropdown-item" href="genesis7.html">Chapter7</a>
+        <a class="dropdown-item" href="genesis8.html">Chapter8</a>
+        <a class="dropdown-item" href="genesis9.html">Chapter9</a>
+        <a class="dropdown-item" href="genesis10.html">Chapter10</a>
+        <a class="dropdown-item" href="genesis11.html">Chapter11</a>
+        <a class="dropdown-item" href="genesis12.html">Chapter12</a>
+        <a class="dropdown-item" href="genesis13.html">Chapter13</a>
+        <a class="dropdown-item" href="genesis14.html">Chapter14</a>
+        <a class="dropdown-item" href="genesis15.html">Chapter15</a>
+        <a class="dropdown-item" href="genesis16.html">Chapter16</a>
+        <a class="dropdown-item" href="genesis17.html">Chapter17</a>
+        <a class="dropdown-item" href="genesis18.html">Chapter18</a>
+        <a class="dropdown-item" href="genesis19.html">Chapter19</a>
+        <a class="dropdown-item" href="genesis20.html">Chapter20</a>
+        <a class="dropdown-item" href="genesis21.html">Chapter21</a>
+        <a class="dropdown-item" href="genesis22.html">Chapter22</a>
+        <a class="dropdown-item" href="genesis23.html">Chapter23</a>
+        <a class="dropdown-item" href="genesis24.html">Chapter24</a>
+        <a class="dropdown-item" href="genesis25.html">Chapter25</a>
+        <a class="dropdown-item" href="genesis26.html">Chapter26</a>
+        <a class="dropdown-item" href="genesis27.html">Chapter27</a>
+        <a class="dropdown-item" href="genesis28.html">Chapter28</a>
+        <a class="dropdown-item" href="genesis29.html">Chapter29</a>
+        <a class="dropdown-item" href="genesis30.html">Chapter30</a>
+        <a class="dropdown-item" href="genesis31.html">Chapter31</a>
+        <a class="dropdown-item" href="genesis32.html">Chapter32</a>
+        <a class="dropdown-item" href="genesis33.html">Chapter33</a>
+        <a class="dropdown-item" href="genesis34.html">Chapter34</a>
+        <a class="dropdown-item" href="genesis35.html">Chapter35</a>
+        <a class="dropdown-item" href="genesis36.html">Chapter36</a>
+        <a class="dropdown-item" href="genesis37.html">Chapter37</a>
+        <a class="dropdown-item" href="genesis38.html">Chapter38</a>
+        <a class="dropdown-item" href="genesis39.html">Chapter39</a>
+        <a class="dropdown-item" href="genesis40.html">Chapter40</a>
+        <a class="dropdown-item" href="genesis41.html">Chapter41</a>
+        <a class="dropdown-item" href="genesis42.html">Chapter42</a>
+        <a class="dropdown-item" href="genesis43.html">Chapter43</a>
+        <a class="dropdown-item" href="genesis44.html">Chapter44</a>
+        <a class="dropdown-item" href="genesis45.html">Chapter45</a>
+        <a class="dropdown-item" href="genesis46.html">Chapter46</a>
+        <a class="dropdown-item" href="genesis47.html">Chapter47</a>
+        <a class="dropdown-item" href="genesis48.html">Chapter48</a>
+        <a class="dropdown-item" href="genesis49.html">Chapter49</a>
+        <a class="dropdown-item" href="genesis50.html">Chapter50</a>
+
+
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </li>
+    </ul>
+
+  <form onsubmit="return fetch();">
+
+    <input type="text" id="search" required/>
+    <input type="submit" class="button" value="Search"/>
+  </form>
+  <div id="results"></div>
+</div>
+</nav>
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 4</a>
+  </div>
+</div>
+<!-- Header -->
+<header class="w3-container w3-black w3-center w3-padding-64" >
+
+      <p id="genesis" style="font-size: 10vw" class="animate__animated animate__bounceInDown animate__delay-3s">GENESIS<p>
+      <p id="genesis" style="font-size: 45px" class="animate__animated animate__bounceInRight animate__delay-1s">Chapter 34</p>
+      <p style="font-size: 30px" class="animate__animated animate__bounceInUp neon animate__delay-4s">"Be ye not unequally yoked together with unbelievers: for what fellowship hath righteousness with unrighteousness? and what communion hath light with darkness?"<span style="font-size: 16px">2 Corinthians 6:14</span></p>
+
+<a href="genesis33.html"><button type="submit" class="button" style="margin:12px">Back Chapter</button></a>
+
+<a href="genesis35.html"><button type="submit" class="button" style="margin:12px">Next Chapter</button></a>
+
+</header>
+<!-- First Grid -->
+<div class="w3-row-padding w3-light-gray w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+
+      <h2 style="font-size: 45px" class="animate__animated animate__backInRight"><strong>Shechem Takes Dinah</strong></h2><br>
+
+
+<!--
+    Paragraph tag goes here for chapter.
+-->
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.25in; margin-bottom: 0in">
+<FONT SIZE=5 STYLE="font-size: 20pt"></FONT><FONT SIZE=4 STYLE="font-size: 16pt">
+</FONT><FONT COLOR="#ff0000"><FONT SIZE=6 STYLE="font-size: 22pt"><I><B>A</B></I></FONT></FONT><FONT SIZE=5 STYLE="font-size: 20pt"><B>nd
+Dinah the daughter of Leah</B></FONT><FONT SIZE=5 STYLE="font-size: 20pt">,</FONT><FONT SIZE=4 STYLE="font-size: 16pt">
+which she bare unto Jacob, went out to see the daughters of the
+land. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">2</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+when Shechem the son of Hamor the Hivite, prince of the country, saw
+her, he took her, and lay with her, and defiled her. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">3</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+his soul clave unto Dinah the daughter of Jacob, and he loved the
+damsel, and spake kindly unto the damsel. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">4</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+Shechem spake unto his father Hamor, saying, Get me this damsel to
+wife. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">5</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+Jacob heard that he had defiled Dinah his daughter: now his sons
+were with his cattle in the field: and Jacob held his peace until
+they were come. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">6</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+Hamor the father of Shechem went out unto Jacob to commune with him.
+</FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">7</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+the sons of Jacob came out of the field when they heard it: and the
+men were grieved, and they were very wroth, because he had wrought
+folly in Israel in lying with Jacob's daughter; which thing ought
+not to be done. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">8</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+Hamor communed with them, saying, The soul of my son Shechem longeth
+for your daughter: I pray you give her him to wife. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">9</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+make ye marriages with us, and give your daughters unto us, and take
+our daughters unto you. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">10</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+ye shall dwell with us: and the land shall be before you; dwell and
+trade ye therein, and get you possessions therein. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">11</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+Shechem said unto her father and unto her brethren, Let me find
+grace in your eyes, and what ye shall say unto me I will give. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">12</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">Ask
+me never so much dowry and gift, and I will give according as ye
+shall say unto me: but give me the damsel to wife. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">13</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+the sons of Jacob answered Shechem and Hamor his father deceitfully,
+and said, because he had defiled Dinah their sister: </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">14</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">and
+they said unto them, We cannot do this thing, to give our sister to
+one that is uncircumcised; for that were a reproach unto us: </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">15</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">but
+in this will we consent unto you: If ye will be as we be, that every
+male of you be circumcised; </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">16</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">then
+will we give our daughters unto you, and we will take your daughters
+to us, and we will dwell with you, and we will become one people.
+</FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">17</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">But
+if ye will not hearken unto us, to be circumcised; then will we take
+our daughter, and we will be gone. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">18</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+their words pleased Hamor, and Shechem Hamor's son. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">19</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+the young man deferred not to do the thing, because he had delight
+in Jacob's daughter: and he was more honourable than all the house
+of his father. </FONT>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.25in; margin-bottom: 0in">
+<SUP><FONT SIZE=4 STYLE="font-size: 16pt">20</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+Hamor and Shechem his son came unto the gate of their city, and
+communed with the men of their city, saying, </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">21</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">these
+men are peaceable with us; therefore let them dwell in the land, and
+trade therein; for the land, behold, it is large enough for them;
+let us take their daughters to us for wives, and let us give them
+our daughters. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">22</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">Only
+herein will the men consent unto us for to dwell with us, to be one
+people, if every male among us be circumcised, as they are
+circumcised. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">23</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">Shall
+not their cattle and their substance and every beast of theirs be
+ours? only let us consent unto them, and they will dwell with us.
+</FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">24</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+unto Hamor and unto Shechem his son hearkened all that went out of
+the gate of his city; and every male was circumcised, all that went
+out of the gate of his city. </FONT>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.25in; margin-bottom: 0in">
+<SUP><FONT SIZE=4 STYLE="font-size: 16pt">25</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+it came to pass on the third day, when they were sore, that two of
+the sons of Jacob, Simeon and Levi, Dinah's brethren, took each man
+his sword, and came upon the city boldly, and slew all the males.
+</FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">26</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+they slew Hamor and Shechem his son with the edge of the sword, and
+took Dinah out of Shechem's house, and went out. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">27</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">The
+sons of Jacob came upon the slain, and spoiled the city, because
+they had defiled their sister. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">28</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">They
+took their sheep, and their oxen, and their asses, and that which
+was in the city, and that which was in the field, </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">29</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">and
+all their wealth, and all their little ones, and their wives took
+they captive, and spoiled even all that was in the house. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">30</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+Jacob said to Simeon and Levi, Ye have troubled me to make me to
+stink among the inhabitants of the land, among the Canaanites and
+the Perizzites: and I being few in number, they shall gather
+themselves together against me, and slay me; and I shall be
+destroyed, I and my house. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">31</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+they said, Should he deal with our sister as with an harlot? </FONT>
+</P>
+
+
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class=" 	fas fa-egg w3-padding-64 w3-text-yellow w3-animate-fading" style="font-size: 200px"></i><i class=" 	fas fa-egg w3-padding-64 w3-text-yellow w3-animate-fading" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-cloud-sun w3-padding-64 w3-text-light-gray" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class=" 	fas fa-egg w3-padding-64 w3-text-yellow w3-animate-fading" style="font-size: 200px"></i><i class=" 	fas fa-egg w3-padding-64 w3-text-yellow w3-animate-fading" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-cloud-sun w3-padding-64 w3-text-light-gray" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class=" 	fas fa-egg w3-padding-64 w3-text-yellow w3-animate-fading" style="font-size: 200px"></i><i class=" 	fas fa-egg w3-padding-64 w3-text-yellow w3-animate-fading" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-cloud-sun w3-padding-64 w3-text-light-gray" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class=" 	fas fa-egg w3-padding-64 w3-text-yellow w3-animate-fading" style="font-size: 200px"></i><i class=" 	fas fa-egg w3-padding-64 w3-text-yellow w3-animate-fading" style="font-size: 200px"></i>
+    </div>
+
+  
+
+
+
+
+
+
+
+
+
+  </div>
+</div>
+<!-- Second Grid -->
+
+<div id="genesis" class="w3-container w3-black w3-center w3-padding-64">
+      <h1 style="font-size: 60px">"Quote Goes Here"<p>Rose M. Aluli</p></h1>
+      <a href="genesis33.html"><button type="submit" class="button" style="margin:20px">Back Chapter</button></a>
+
+      <a href="genesis35.html"><button type="submit" class="button" style="margin:20px">Next Chapter</button></a>
+</div>
+<!-- Footer -->
+
+<script>
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html>

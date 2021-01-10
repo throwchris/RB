@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Rose Bible</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="https://kit.fontawesome.com/d1a6249b79.js"></script>
+
+<script>
+  function fetch() {
+    // GET SEARCH TERM
+    var data = new FormData();
+    data.append('search', document.getElementById("search").value);
+    data.append('ajax', 1);
+    // AJAX SEARCH REQUEST
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', "search.php", true);
+    xhr.onload = function () {
+      if (this.status==200) {
+        var results = JSON.parse(this.response),
+            wrapper = document.getElementById("results");
+        wrapper.innerHTML = "";
+        if (results.length > 0) {
+          for(var res of results) {
+            var popup = document.createElement("div");
+            popup.innerHTML = res['name'] + " - " + res['definition'];
+            popup.classList.add("popup");
+            popup.onclick = function(){this.remove();};
+            document.body.appendChild(popup);
+          }
+        } else {
+          popup.innerHTML = "No results found";
+        }
+      } else {
+        alert("ERROR LOADING FILE!");
+      }
+    };
+    xhr.send(data);
+    return false;
+  }
+</script>
+<link rel="stylesheet" href="genesis.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/d1a6249b79.js"></script>
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee, {font-size:200px}
+</style>
+
+<body>
+
+
+
+<!--
+  <script>
+       alert("It's The Fathers Good Pleasure To Give Us The Kingdom!!!  ")
+  </script>
+-->
+<!-- Navbar -->
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+<a class="navbar-brand textShadow" href="#">Rose Bible</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="navbar-nav mr-auto">
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle ntddShadow" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        New Testament
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="#">Matthew</a>
+        <a class="dropdown-item" href="#">Mark</a>
+        <a class="dropdown-item" href="#">Luke</a>
+        <a class="dropdown-item" href="#">John</a>
+        <a class="dropdown-item" href="#">Acts</a>
+        <a class="dropdown-item" href="#">Romans</a>
+        <a class="dropdown-item" href="#">1 Corinthians</a>
+        <a class="dropdown-item" href="#">2 Corinthians</a>
+        <a class="dropdown-item" href="#">Galatians</a>
+        <a class="dropdown-item" href="#">Ephesians</a>
+        <a class="dropdown-item" href="#">Philippians</a>
+        <a class="dropdown-item" href="#">Colosians</a>
+        <a class="dropdown-item" href="#">1 Thessalonians</a>
+        <a class="dropdown-item" href="#">2 Thessalonians</a>
+        <a class="dropdown-item" href="#">1 Timothy</a>
+        <a class="dropdown-item" href="#">2 Timothy</a>
+        <a class="dropdown-item" href="#">Titus</a>
+        <a class="dropdown-item" href="#">Philemon</a>
+        <a class="dropdown-item" href="#">Hebrews</a>
+        <a class="dropdown-item" href="#">James</a>
+        <a class="dropdown-item" href="#">1 Peter</a>
+        <a class="dropdown-item" href="#">2 Peter</a>
+        <a class="dropdown-item" href="#">1 John</a>
+        <a class="dropdown-item" href="#">2 John</a>
+        <a class="dropdown-item" href="#">3 John</a>
+        <a class="dropdown-item" href="#">Jude</a>
+        <a class="dropdown-item" href="#">Revelation</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </li>
+    <li class="nav-item dropdown">
+      <a id="genesis"class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Genesis Chapters
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="genesis1.html">Chapter1</a>
+        <a class="dropdown-item" href="genesis2.html">Chapter2</a>
+        <a class="dropdown-item" href="genesis3.html">Chapter3</a>
+        <a class="dropdown-item" href="genesis4.html">Chapter4</a>
+        <a class="dropdown-item" href="genesis5.html">Chapter5</a>
+        <a class="dropdown-item" href="genesis6.html">Chapter6</a>
+        <a class="dropdown-item" href="genesis7.html">Chapter7</a>
+        <a class="dropdown-item" href="genesis8.html">Chapter8</a>
+        <a class="dropdown-item" href="genesis9.html">Chapter9</a>
+        <a class="dropdown-item" href="genesis10.html">Chapter10</a>
+        <a class="dropdown-item" href="genesis11.html">Chapter11</a>
+        <a class="dropdown-item" href="genesis12.html">Chapter12</a>
+        <a class="dropdown-item" href="genesis13.html">Chapter13</a>
+        <a class="dropdown-item" href="genesis14.html">Chapter14</a>
+        <a class="dropdown-item" href="genesis15.html">Chapter15</a>
+        <a class="dropdown-item" href="genesis16.html">Chapter16</a>
+        <a class="dropdown-item" href="genesis17.html">Chapter17</a>
+        <a class="dropdown-item" href="genesis18.html">Chapter18</a>
+        <a class="dropdown-item" href="genesis19.html">Chapter19</a>
+        <a class="dropdown-item" href="genesis20.html">Chapter20</a>
+        <a class="dropdown-item" href="genesis21.html">Chapter21</a>
+        <a class="dropdown-item" href="genesis22.html">Chapter22</a>
+        <a class="dropdown-item" href="genesis23.html">Chapter23</a>
+        <a class="dropdown-item" href="genesis24.html">Chapter24</a>
+        <a class="dropdown-item" href="genesis25.html">Chapter25</a>
+        <a class="dropdown-item" href="genesis26.html">Chapter26</a>
+        <a class="dropdown-item" href="genesis27.html">Chapter27</a>
+        <a class="dropdown-item" href="genesis28.html">Chapter28</a>
+        <a class="dropdown-item" href="genesis29.html">Chapter29</a>
+        <a class="dropdown-item" href="genesis30.html">Chapter30</a>
+        <a class="dropdown-item" href="genesis31.html">Chapter31</a>
+        <a class="dropdown-item" href="genesis32.html">Chapter32</a>
+        <a class="dropdown-item" href="genesis33.html">Chapter33</a>
+        <a class="dropdown-item" href="genesis34.html">Chapter34</a>
+        <a class="dropdown-item" href="genesis35.html">Chapter35</a>
+        <a class="dropdown-item" href="genesis36.html">Chapter36</a>
+        <a class="dropdown-item" href="genesis37.html">Chapter37</a>
+        <a class="dropdown-item" href="genesis38.html">Chapter38</a>
+        <a class="dropdown-item" href="genesis39.html">Chapter39</a>
+        <a class="dropdown-item" href="genesis40.html">Chapter40</a>
+        <a class="dropdown-item" href="genesis41.html">Chapter41</a>
+        <a class="dropdown-item" href="genesis42.html">Chapter42</a>
+        <a class="dropdown-item" href="genesis43.html">Chapter43</a>
+        <a class="dropdown-item" href="genesis44.html">Chapter44</a>
+        <a class="dropdown-item" href="genesis45.html">Chapter45</a>
+        <a class="dropdown-item" href="genesis46.html">Chapter46</a>
+        <a class="dropdown-item" href="genesis47.html">Chapter47</a>
+        <a class="dropdown-item" href="genesis48.html">Chapter48</a>
+        <a class="dropdown-item" href="genesis49.html">Chapter49</a>
+        <a class="dropdown-item" href="genesis50.html">Chapter50</a>
+
+
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </li>
+    </ul>
+
+  <form onsubmit="return fetch();">
+
+    <input type="text" id="search" required/>
+    <input type="submit" class="button" value="Search"/>
+  </form>
+  <div id="results"></div>
+</div>
+</nav>
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 4</a>
+  </div>
+</div>
+<!-- Header -->
+<header class="w3-container w3-black w3-center w3-padding-64" >
+
+      <p id="genesis" style="font-size: 10vw" class="animate__animated animate__bounceInDown animate__delay-3s">GENESIS<p>
+      <p id="genesis" style="font-size: 45px" class="animate__animated animate__bounceInRight animate__delay-1s">Chapter 24</p>
+      <p style="font-size: 30px" class="animate__animated animate__bounceInUp neon animate__delay-4s">"Neither, because they are the seed of Abraham, are they all children: but, In Isaac shall thy seed be called."<span style="font-size: 16px">Romans 9:7</span></p>
+
+<a href="genesis23.html"><button type="submit" class="button" style="margin:12px">Back Chapter</button></a>
+
+<a href="genesis25.html"><button type="submit" class="button" style="margin:12px">Next Chapter</button></a>
+
+</header>
+<!-- First Grid -->
+<div class="w3-row-padding w3-light-gray w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+
+      <h2 style="font-size: 45px" class="animate__animated animate__backInRight"><strong>Isaac Marries Rebekah</strong></h2><br>
+
+
+<!--
+    Paragraph tag goes here for chapter.
+-->
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.25in; margin-bottom: 0in">
+<FONT SIZE=5 STYLE="font-size: 20pt"></FONT><FONT SIZE=4 STYLE="font-size: 16pt">
+</FONT><FONT COLOR="#ff0000"><FONT SIZE=6 STYLE="font-size: 22pt"><I><B>A</B></I></FONT></FONT><FONT SIZE=5 STYLE="font-size: 20pt"><B>nd
+Abraham was old, and well stricken in age</B></FONT><FONT SIZE=5 STYLE="font-size: 20pt">:</FONT><FONT SIZE=4 STYLE="font-size: 16pt">
+and the Lord had blessed Abraham in all things. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">2</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+Abraham said unto his eldest servant of his house, that ruled over
+all that he had, Put, I pray thee, thy hand under my thigh: </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">3</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">and
+I will make thee swear by the Lord, the God of heaven, and the God
+of the earth, that thou shalt not take a wife unto my son of the
+daughters of the Canaanites, among whom I dwell: </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">4</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">but
+thou shalt go unto my country, and to my kindred, and take a wife
+unto my son Isaac. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">5</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+the servant said unto him, Peradventure the woman will not be
+willing to follow me unto this land: must I needs bring thy son
+again unto the land from whence thou camest? </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">6</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+Abraham said unto him, Beware thou that thou bring not my son
+thither again. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">7</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">The
+Lord God of heaven, which took me from my father's house, and from
+the land of my kindred, and which spake unto me, and that sware unto
+me, saying, Unto thy seed will I give this land; he shall send his
+angel before thee, and thou shalt take a wife unto my son from
+thence. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">8</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+if the woman will not be willing to follow thee, then thou shalt be
+clear from this my oath: only bring not my son thither again. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">9</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+the servant put his hand under the thigh of Abraham his master, and
+sware to him concerning that matter. </FONT>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.25in; margin-bottom: 0in">
+<SUP><FONT SIZE=4 STYLE="font-size: 16pt">10</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+the servant took ten camels of the camels of his master, and
+departed; for all the goods of his master were in his hand: and he
+arose, and went to Mesopotamia, unto the city of Nahor. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">11</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+he made his camels to kneel down without the city by a well of water
+at the time of the evening, even the time that women go out to draw
+water. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">12</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+he said, O Lord God of my master Abraham, I pray thee, send me good
+speed this day, and shew kindness unto my master Abraham. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">13</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">Behold,
+I stand here by the well of water; and the daughters of the men of
+the city come out to draw water: </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">14</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">and
+let it come to pass, that the damsel to whom I shall say, Let down
+thy pitcher, I pray thee, that I may drink; and she shall say,
+Drink, and I will give thy camels drink also: let the same be she
+that thou hast appointed for thy servant Isaac; and thereby shall I
+know that thou hast shewed kindness unto my master. </FONT>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.25in; margin-bottom: 0in">
+<FONT SIZE=4 STYLE="font-size: 16pt"><SUP>15</SUP>And it came to
+pass, before he had done speaking, that, behold, Rebekah came out,
+who was born to Bethuel, son of Milcah, the wife of Nahor, Abraham's
+brother, with her pitcher upon her shoulder. <SUP>16</SUP>And the
+damsel was very fair to look upon, a virgin, neither had any man
+known her: and she went down to the well, and filled her pitcher,
+and came up. <SUP>17</SUP>And the servant ran to meet her, and said,
+Let me, I pray thee, drink a little water of thy pitcher. <SUP>18</SUP>And
+she said, Drink, my lord: and she hasted, and let down her pitcher
+upon her hand, and gave him drink. <SUP>19</SUP>And when she had
+done giving him drink, she said, I will draw water for thy camels
+also, until they have done drinking. <SUP>20</SUP>And she hasted,
+and emptied her pitcher into the trough, and ran again unto the well
+to draw water, and drew for all his camels. <SUP>21</SUP>And the man
+wondering at her held his peace, to wit whether the Lord had made
+his journey prosperous or not. <SUP>22</SUP>And it came to pass, as
+the camels had done drinking, that the man took a golden earring of
+half a shekel weight, and two bracelets for her hands of ten shekels
+weight of gold; <SUP>23</SUP>and said, Whose daughter art thou? tell
+me, I pray thee: is there room in thy father's house for us to lodge
+in? <SUP>24</SUP>And she said unto him, I am the daughter of Bethuel
+the son of Milcah, which she bare unto Nahor. <SUP>25</SUP>She said
+moreover unto him, We have both straw and provender enough, and room
+to lodge in. <SUP>26</SUP>And the man bowed down his head, and
+worshipped the Lord. <SUP>27</SUP>And he said, Blessed be the Lord
+God of my master Abraham, who hath not left destitute my master of
+his mercy and his truth: I being in the way, the Lord led me to the
+house of my master's brethren. <SUP>28</SUP>And the damsel ran, and
+told them of her mother's house these things. </FONT>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.25in; margin-bottom: 0in">
+<FONT SIZE=4 STYLE="font-size: 16pt"><SUP>29</SUP>And Rebekah had a
+brother, and his name was Laban: and Laban ran out unto the man,
+unto the well. <SUP>30</SUP>And it came to pass, when he saw the
+earring and bracelets upon his sister's hands, and when he heard the
+words of Rebekah his sister, saying, Thus spake the man unto me;
+that he came unto the man; and, behold, he stood by the camels at
+the well. <SUP>31</SUP>And he said, Come in, thou blessed of the
+Lord; wherefore standest thou without? for I have prepared the
+house, and room for the camels. <SUP>32</SUP>And the man came into
+the house: and he ungirded his camels, and gave straw and provender
+for the camels, and water to wash his feet, and the men's feet that
+were with him. <SUP>33</SUP>And there was set meat before him to
+eat: but he said, I will not eat, until I have told mine errand. And
+he said, Speak on. <SUP>34</SUP>And he said, I am Abraham's servant.
+<SUP>35</SUP>And the Lord hath blessed my master greatly; and he is
+become great: and he hath given him flocks, and herds, and silver,
+and gold, and menservants, and maidservants, and camels, and asses.
+<SUP>36</SUP>And Sarah my master's wife bare a son to my master when
+she was old: and unto him hath he given all that he hath. <SUP>37</SUP>And
+my master made me swear, saying, Thou shalt not take a wife to my
+son of the daughters of the Canaanites, in whose land I dwell: <SUP>38</SUP>but
+thou shalt go unto my father's house, and to my kindred, and take a
+wife unto my son. <SUP>39</SUP>And I said unto my master,
+Peradventure the woman will not follow me. <SUP>40</SUP>And he said
+unto me, The Lord, before whom I walk, will send his angel with
+thee, and prosper thy way; and thou shalt take a wife for my son of
+my kindred, and of my father's house: <SUP>41</SUP>then shalt thou
+be clear from this my oath, when thou comest to my kindred; and if
+they give not thee one, thou shalt be clear from my oath. <SUP>42</SUP>And
+I came this day unto the well, and said, O Lord God of my master
+Abraham, if now thou do prosper my way which I go; <SUP>43</SUP>behold,
+I stand by the well of water; and it shall come to pass, that when
+the virgin cometh forth to draw water, and I say to her, Give me, I
+pray thee, a little water of thy pitcher to drink; <SUP>44</SUP>and
+she say to me, Both drink thou, and I will also draw for thy camels:
+let the same be the woman whom the Lord hath appointed out for my
+master's son. <SUP>45</SUP>And before I had done speaking in mine
+heart, behold, Rebekah came forth with her pitcher on her shoulder;
+and she went down unto the well, and drew water: and I said unto
+her, Let me drink, I pray thee. <SUP>46</SUP>And she made haste, and
+let down her pitcher from her shoulder, and said, Drink, and I will
+give thy camels drink also: so I drank, and she made the camels
+drink also. <SUP>47</SUP>And I asked her, and said, Whose daughter
+art thou? And she said, The daughter of Bethuel, Nahor's son, whom
+Milcah bare unto him: and I put the earring upon her face, and the
+bracelets upon her hands. <SUP>48</SUP>And I bowed down my head, and
+worshipped the Lord, and blessed the Lord God of my master Abraham,
+which had led me in the right way to take my master's brother's
+daughter unto his son. <SUP>49</SUP>And now if ye will deal kindly
+and truly with my master, tell me: and if not, tell me; that I may
+turn to the right hand, or to the left. <SUP>50</SUP>Then Laban and
+Bethuel answered and said, The thing proceedeth from the Lord: we
+cannot speak unto thee bad or good. <SUP>51</SUP>Behold, Rebekah is
+before thee, take her, and go, and let her be thy master's son's
+wife, as the Lord hath spoken. <SUP>52</SUP>And it came to pass,
+that, when Abraham's servant heard their words, he worshipped the
+Lord, bowing himself to the earth. <SUP>53</SUP>And the servant
+brought forth jewels of silver, and jewels of gold, and raiment, and
+gave them to Rebekah: he gave also to her brother and to her mother
+precious things. <SUP>54</SUP>And they did eat and drink, he and the
+men that were with him, and tarried all night; and they rose up in
+the morning, and he said, Send me away unto my master. <SUP>55</SUP>And
+her brother and her mother said, Let the damsel abide with us a few
+days, at the least ten; after that she shall go. <SUP>56</SUP>And he
+said unto them, Hinder me not, seeing the Lord hath prospered my
+way; send me away that I may go to my master. <SUP>57</SUP>And they
+said, We will call the damsel, and enquire at her mouth. <SUP>58</SUP>And
+they called Rebekah, and said unto her, Wilt thou go with this man?
+And she said, I will go. <SUP>59</SUP>And they sent away Rebekah
+their sister, and her nurse, and Abraham's servant, and his men.
+<SUP>60</SUP>And they blessed Rebekah, and said unto her, Thou art
+our sister, be thou the mother of thousands of millions, and let thy
+seed possess the gate of those which hate them. <SUP>61</SUP>And
+Rebekah arose, and her damsels, and they rode upon the camels, and
+followed the man: and the servant took Rebekah, and went his way. </FONT>
+</P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.25in; margin-bottom: 0in">
+<SUP><FONT SIZE=4 STYLE="font-size: 16pt">62</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+Isaac came from the way of the well Lahai-roi; for he dwelt in the
+south country. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">63</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+Isaac went out to meditate in the field at the eventide: and he
+lifted up his eyes, and saw, and, behold, the camels were coming.
+</FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">64</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+Rebekah lifted up her eyes, and when she saw Isaac, she lighted off
+the camel. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">65</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">For
+she had said unto the servant, What man is this that walketh in the
+field to meet us? And the servant had said, It is my master:
+therefore she took a veil, and covered herself. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">66</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+the servant told Isaac all things that he had done. </FONT><SUP><FONT SIZE=4 STYLE="font-size: 16pt">67</FONT></SUP><FONT SIZE=4 STYLE="font-size: 16pt">And
+Isaac brought her into his mother Sarah's tent, and took Rebekah,
+and she became his wife; and he loved her: and Isaac was comforted
+after his mother's death. </FONT>
+</P>
+
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-couch w3-padding-64 w3-text-indigo w3-animate-fading" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-cloud-sun w3-padding-64 w3-text-light-gray" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-couch w3-padding-64 w3-text-indigo w3-animate-fading" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-cloud-sun w3-padding-64 w3-text-light-gray" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-couch w3-padding-64 w3-text-indigo w3-animate-fading" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-cloud-sun w3-padding-64 w3-text-light-gray" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-couch w3-padding-64 w3-text-indigo w3-animate-fading" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-cloud-sun w3-padding-64 w3-text-light-gray" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-couch w3-padding-64 w3-text-indigo w3-animate-fading" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-cloud-sun w3-padding-64 w3-text-light-gray" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-couch w3-padding-64 w3-text-indigo w3-animate-fading" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-cloud-sun w3-padding-64 w3-text-light-gray" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-couch w3-padding-64 w3-text-indigo w3-animate-fading" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-cloud-sun w3-padding-64 w3-text-light-gray" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-couch w3-padding-64 w3-text-indigo w3-animate-fading" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-cloud-sun w3-padding-64 w3-text-light-gray" style="font-size: 200px"></i>
+    </div>
+
+    <div class="w3-third w3-center w3-hide-small">
+      <i class="fas fa-couch w3-padding-64 w3-text-indigo w3-animate-fading" style="font-size: 200px"></i>
+    </div>
+
+    
+
+
+
+
+
+  </div>
+</div>
+<!-- Second Grid -->
+
+<div id="genesis" class="w3-container w3-black w3-center w3-padding-64">
+      <h1 style="font-size: 60px">"Quote Goes Here"<p>Rose M. Aluli</p></h1>
+      <a href="genesis23.html"><button type="submit" class="button" style="margin:20px">Back Chapter</button></a>
+
+      <a href="genesis25.html"><button type="submit" class="button" style="margin:20px">Next Chapter</button></a>
+</div>
+<!-- Footer -->
+
+<script>
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html>
