@@ -38,6 +38,26 @@
     return false;
   }
 </script>
+
+// Prevent closing from click inside dropdown
+<script>
+$(document).on('click', '.dropdown-menu', function (e) {
+  e.stopPropagation();
+});
+
+// make it as accordion for smaller screens
+if ($(window).width() < 992) {
+  $('.dropdown-menu a').click(function(e){
+    e.preventDefault();
+      if($(this).next('.submenu').length){
+        $(this).next('.submenu').toggle();
+      }
+      $('.dropdown').on('hide.bs.dropdown', function () {
+     $(this).find('.submenu').hide();
+  })
+  });
+}
+</script>
 <link rel="stylesheet" href="genesis.css">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -66,7 +86,141 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
 <!-- Navbar -->
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
 
-<a class="navbar-brand textShadow" href="#" style="font-size: 24px">Rose Bible</a>
+
+<nav class="navbar">
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
+    <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="main_nav">
+
+<ul class="navbar-nav">
+ <a class="nav-link textShadow" style="font-size: 24px" href="#"> Rose Bible </a>
+
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle ntddShadow" href="#" data-toggle="dropdown" style="font-size: 24px">New Testament</a>
+    <ul class="dropdown-menu">
+		 <li><a class="dropdown-item" href="#"> Gospels & Acts </a>
+		 <ul class="submenu dropdown-menu">
+		    <li><a class="dropdown-item" href="">Matthew</a></li>
+		    <li><a class="dropdown-item" href="">Mark</a></li>
+        <li><a class="dropdown-item" href="">Luke</a></li>
+        <li><a class="dropdown-item" href="">John</a></li>
+        <li><a class="dropdown-item" href="">Acts</a></li>
+		    </li>
+				</ul>
+	  </li>
+    <li><a class="dropdown-item" href="#"> Pauls Epistles </a>
+    <ul class="submenu dropdown-menu">
+       <li><a class="dropdown-item" href="">Romans</a></li>
+       <li><a class="dropdown-item" href="">1 Corinthians</a></li>
+       <li><a class="dropdown-item" href="">2 Corinthians</a></li>
+       <li><a class="dropdown-item" href="">Galatians</a></li>
+       <li><a class="dropdown-item" href="">Ephesians</a></li>
+       <li><a class="dropdown-item" href="">Philippians</a></li>
+       <li><a class="dropdown-item" href="">Colossians</a></li>
+       <li><a class="dropdown-item" href="">1 Thessalonians</a></li>
+       <li><a class="dropdown-item" href="">2 Thessalonians</a></li>
+       <li><a class="dropdown-item" href="">1 Timothy</a></li>
+       <li><a class="dropdown-item" href="">2 Timothy</a></li>
+       <li><a class="dropdown-item" href="">Titus</a></li>
+       <li><a class="dropdown-item" href="">Philemon</a></li>
+       <li><a class="dropdown-item" href="">Hebrews</a></li>
+       </li>
+       </ul>
+   </li>
+   <li><a class="dropdown-item" href="#">Remaining Letters</a>
+   <ul class="submenu dropdown-menu">
+      <li><a class="dropdown-item" href="">James</a></li>
+      <li><a class="dropdown-item" href="">1 Peter</a></li>
+      <li><a class="dropdown-item" href="">2 Peter</a></li>
+      <li><a class="dropdown-item" href="">1 John</a></li>
+      <li><a class="dropdown-item" href="">2 John</a></li>
+      <li><a class="dropdown-item" href="">3 John</a></li>
+      <li><a class="dropdown-item" href="">Jude</a></li>
+      </li>
+      </ul>
+  </li>
+	  <li><a id="redletter ntntddShadow" class="dropdown-item" href="#">John</a></li>
+	  <li><a id="redletter ntddShadow" class="dropdown-item" href="#">Revelation</a>
+    </ul>
+
+</li>
+
+<li class="nav-item dropdown">
+    <a id="genesis" class="nav-link dropdown-toggle ntddShadow" href="#" data-toggle="dropdown" style="font-size: 24px">Genesis Chapters</a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Chapters 1-10 </a>
+      <ul class="submenu dropdown-menu">
+         <li><a class="dropdown-item" href="genesis1.html">Chapter 1</a></li>
+         <li><a class="dropdown-item" href="genesis2.html">Chapter 2</a></li>
+         <li><a class="dropdown-item" href="genesis3.html">Chapter 3</a></li>
+         <li><a class="dropdown-item" href="genesis4.html">Chapter 4</a></li>
+         <li><a class="dropdown-item" href="genesis5.html">Chapter 5</a></li>
+         <li><a class="dropdown-item" href="genesis6.html">Chapter 6</a></li>
+         <li><a class="dropdown-item" href="genesis7.html">Chapter 7</a></li>
+         <li><a class="dropdown-item" href="genesis8.html">Chapter 8</a></li>
+         <li><a class="dropdown-item" href="genesis9.html">Chapter 9</a></li>
+         <li><a class="dropdown-item" href="genesis10.html">Chapter 10</a></li>
+      </li>
+      </ul>
+      <li><a class="dropdown-item" href="#">Chapters 11-20 </a>
+      <ul class="submenu dropdown-menu">
+        <li><a class="dropdown-item" href="genesis11.html">Chapter 11</a></li>
+        <li><a class="dropdown-item" href="genesis12.html">Chapter 12</a></li>
+        <li><a class="dropdown-item" href="genesis13.html">Chapter 13</a></li>
+        <li><a class="dropdown-item" href="genesis14.html">Chapter 14</a></li>
+        <li><a class="dropdown-item" href="genesis15.html">Chapter 15</a></li>
+        <li><a class="dropdown-item" href="genesis16.html">Chapter 16</a></li>
+        <li><a class="dropdown-item" href="genesis17.html">Chapter 17</a></li>
+        <li><a class="dropdown-item" href="genesis18.html">Chapter 18</a></li>
+        <li><a class="dropdown-item" href="genesis19.html">Chapter 19</a></li>
+        <li><a class="dropdown-item" href="genesis20.html">Chapter 20</a></li>
+     </li>
+     </ul>
+    <li><a class="dropdown-item" href="#"> Chapters 21-30 </a>
+    <ul class="submenu dropdown-menu">
+      <li><a class="dropdown-item" href="genesis21.html">Chapter 21</a></li>
+      <li><a class="dropdown-item" href="genesis22.html">Chapter 22</a></li>
+      <li><a class="dropdown-item" href="genesis23.html">Chapter 23</a></li>
+      <li><a class="dropdown-item" href="genesis24.html">Chapter 24</a></li>
+      <li><a class="dropdown-item" href="genesis25.html">Chapter 25</a></li>
+      <li><a class="dropdown-item" href="genesis26.html">Chapter 26</a></li>
+      <li><a class="dropdown-item" href="genesis27.html">Chapter 27</a></li>
+      <li><a class="dropdown-item" href="genesis28.html">Chapter 28</a></li>
+      <li><a class="dropdown-item" href="genesis29.html">Chapter 29</a></li>
+      <li><a class="dropdown-item" href="genesis30.html">Chapter 30</a></li>
+    </li>
+    </ul>
+  <li><a class="dropdown-item" href="#">Chapters 31-40</a>
+  <ul class="submenu dropdown-menu">
+    <li><a class="dropdown-item" href="genesis31.html">Chapter 31</a></li>
+    <li><a class="dropdown-item" href="genesis32.html">Chapter 32</a></li>
+    <li><a class="dropdown-item" href="genesis33.html">Chapter 33</a></li>
+    <li><a class="dropdown-item" href="genesis34.html">Chapter 34</a></li>
+    <li><a class="dropdown-item" href="genesis35.html">Chapter 35</a></li>
+    <li><a class="dropdown-item" href="genesis36.html">Chapter 36</a></li>
+    <li><a class="dropdown-item" href="genesis37.html">Chapter 37</a></li>
+    <li><a class="dropdown-item" href="genesis38.html">Chapter 38</a></li>
+    <li><a class="dropdown-item" href="genesis39.html">Chapter 39</a></li>
+    <li><a class="dropdown-item" href="genesis40.html">Chapter 40</a></li>
+  </li>
+  </ul>
+          <li><a class="dropdown-item" href="#">Chapters 41-50 </a>
+          <ul class="submenu dropdown-menu">
+            <li><a class="dropdown-item" href="genesis41.html">Chapter 41</a></li>
+            <li><a class="dropdown-item" href="genesis42.html">Chapter 42</a></li>
+            <li><a class="dropdown-item" href="genesis43.html">Chapter 43</a></li>
+            <li><a class="dropdown-item" href="genesis45.html">Chapter 44</a></li>
+            <li><a class="dropdown-item" href="genesis45.html">Chapter 45</a></li>
+            <li><a class="dropdown-item" href="genesis46.html">Chapter 46</a></li>
+            <li><a class="dropdown-item" href="genesis47.html">Chapter 47 </a></li>
+            <li><a class="dropdown-item" href="genesis48.html">Chapter 48</a></li>
+            <li><a class="dropdown-item" href="genesis49.html">Chapter 49</a></li>
+            <li><a class="dropdown-item" href="genesis50.html">Chapter 50</a></li>
+          </li>
+          </ul>
+</div> <!-- navbar-collapse.// -->
+</nav>
 
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
@@ -75,101 +229,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
   <ul class="navbar-nav mr-auto">
 
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle ntddShadow" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 16px">
-        New Testament
-      </a>
-      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="#">Matthew</a>
-        <a class="dropdown-item" href="#">Mark</a>
-        <a class="dropdown-item" href="#">Luke</a>
-        <a class="dropdown-item" href="#">John</a>
-        <a class="dropdown-item" href="#">Acts</a>
-        <a class="dropdown-item" href="#">Romans</a>
-        <a class="dropdown-item" href="#">1 Corinthians</a>
-        <a class="dropdown-item" href="#">2 Corinthians</a>
-        <a class="dropdown-item" href="#">Galatians</a>
-        <a class="dropdown-item" href="#">Ephesians</a>
-        <a class="dropdown-item" href="#">Philippians</a>
-        <a class="dropdown-item" href="#">Colosians</a>
-        <a class="dropdown-item" href="#">1 Thessalonians</a>
-        <a class="dropdown-item" href="#">2 Thessalonians</a>
-        <a class="dropdown-item" href="#">1 Timothy</a>
-        <a class="dropdown-item" href="#">2 Timothy</a>
-        <a class="dropdown-item" href="#">Titus</a>
-        <a class="dropdown-item" href="#">Philemon</a>
-        <a class="dropdown-item" href="#">Hebrews</a>
-        <a class="dropdown-item" href="#">James</a>
-        <a class="dropdown-item" href="#">1 Peter</a>
-        <a class="dropdown-item" href="#">2 Peter</a>
-        <a class="dropdown-item" href="#">1 John</a>
-        <a class="dropdown-item" href="#">2 John</a>
-        <a class="dropdown-item" href="#">3 John</a>
-        <a class="dropdown-item" href="#">Jude</a>
-        <a class="dropdown-item" href="#">Revelation</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Something else here</a>
-      </div>
-    </li>
-    <li class="nav-item dropdown">
-      <a id="genesis" class="nav-link dropdown-toggle otddShadow" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 16px">
-        Genesis Chapters
-      </a>
-      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="genesis1.html">Chapter1</a>
-        <a class="dropdown-item" href="genesis2.html">Chapter2</a>
-        <a class="dropdown-item" href="genesis3.html">Chapter3</a>
-        <a class="dropdown-item" href="genesis4.html">Chapter4</a>
-        <a class="dropdown-item" href="genesis5.html">Chapter5</a>
-        <a class="dropdown-item" href="genesis6.html">Chapter6</a>
-        <a class="dropdown-item" href="genesis7.html">Chapter7</a>
-        <a class="dropdown-item" href="genesis8.html">Chapter8</a>
-        <a class="dropdown-item" href="genesis9.html">Chapter9</a>
-        <a class="dropdown-item" href="genesis10.html">Chapter10</a>
-        <a class="dropdown-item" href="genesis11.html">Chapter11</a>
-        <a class="dropdown-item" href="genesis12.html">Chapter12</a>
-        <a class="dropdown-item" href="genesis13.html">Chapter13</a>
-        <a class="dropdown-item" href="genesis14.html">Chapter14</a>
-        <a class="dropdown-item" href="genesis15.html">Chapter15</a>
-        <a class="dropdown-item" href="genesis16.html">Chapter16</a>
-        <a class="dropdown-item" href="genesis17.html">Chapter17</a>
-        <a class="dropdown-item" href="genesis18.html">Chapter18</a>
-        <a class="dropdown-item" href="genesis19.html">Chapter19</a>
-        <a class="dropdown-item" href="genesis20.html">Chapter20</a>
-        <a class="dropdown-item" href="genesis21.html">Chapter21</a>
-        <a class="dropdown-item" href="genesis22.html">Chapter22</a>
-        <a class="dropdown-item" href="genesis23.html">Chapter23</a>
-        <a class="dropdown-item" href="genesis24.html">Chapter24</a>
-        <a class="dropdown-item" href="genesis25.html">Chapter25</a>
-        <a class="dropdown-item" href="genesis26.html">Chapter26</a>
-        <a class="dropdown-item" href="genesis27.html">Chapter27</a>
-        <a class="dropdown-item" href="genesis28.html">Chapter28</a>
-        <a class="dropdown-item" href="genesis29.html">Chapter29</a>
-        <a class="dropdown-item" href="genesis30.html">Chapter30</a>
-        <a class="dropdown-item" href="genesis31.html">Chapter31</a>
-        <a class="dropdown-item" href="genesis32.html">Chapter32</a>
-        <a class="dropdown-item" href="genesis33.html">Chapter33</a>
-        <a class="dropdown-item" href="genesis34.html">Chapter34</a>
-        <a class="dropdown-item" href="genesis35.html">Chapter35</a>
-        <a class="dropdown-item" href="genesis36.html">Chapter36</a>
-        <a class="dropdown-item" href="genesis37.html">Chapter37</a>
-        <a class="dropdown-item" href="genesis38.html">Chapter38</a>
-        <a class="dropdown-item" href="genesis39.html">Chapter39</a>
-        <a class="dropdown-item" href="genesis40.html">Chapter40</a>
-        <a class="dropdown-item" href="genesis41.html">Chapter41</a>
-        <a class="dropdown-item" href="genesis42.html">Chapter42</a>
-        <a class="dropdown-item" href="genesis43.html">Chapter43</a>
-        <a class="dropdown-item" href="genesis44.html">Chapter44</a>
-        <a class="dropdown-item" href="genesis45.html">Chapter45</a>
-        <a class="dropdown-item" href="genesis46.html">Chapter46</a>
-        <a class="dropdown-item" href="genesis47.html">Chapter47</a>
-        <a class="dropdown-item" href="genesis48.html">Chapter48</a>
-        <a class="dropdown-item" href="genesis49.html">Chapter49</a>
-        <a class="dropdown-item" href="genesis50.html">Chapter50</a>
 
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="genesisAlt.html">Something else here</a>
-      </div>
     </li>
 
           </ul>
@@ -191,15 +251,16 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
   </div>
 </div>
 <!-- Header -->
-<header class="w3-container w3-black w3-center w3-padding-64" >
+<header class="w3-container w3-black w3-center w3-padding-64" style="background-image: url()" >
 
   <ul class="wind">
       <p id="genesis" style="font-size: 10vw" class="animate__animated animate__bounceInDown">GENESIS<p>
-
+<!--
     <audio id="wind" preload="auto">
         <source src="wind.mp3">
 
     </audio>
+  -->
 </ul>
   <script>
       const wind= $("#wind")[0];
@@ -226,7 +287,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
 
 
 
-          <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.25in; margin-bottom: 0in">
+      <P CLASS="western" ALIGN=JUSTIFY STYLE="text-indent: 0.25in; margin-bottom: 0in">
 <FONT COLOR="#ff0000"><FONT SIZE=6 STYLE="font-size: 26pt"><B>I</B></FONT></FONT><FONT SIZE=6 STYLE="font-size: 22pt"><B>n
 the beginning God created</B></FONT><FONT SIZE=6 STYLE="font-size: 22pt">
 </FONT><FONT SIZE=4 STYLE="font-size: 16pt">the heaven and the earth</FONT><FONT SIZE=6 STYLE="font-size: 22pt">.</FONT><FONT SIZE=4 STYLE="font-size: 16pt">
@@ -377,7 +438,7 @@ God made two great lights; the greater light </FONT>
 
     <p style="font-size: 60px">"Everlasting Life: Its not passed out like peanuts"<span style="font-size: 16px">Rose M. Aluli</span></p>
 
-      <a href="genesisAlt.html"><button type="submit" class="button" style="margin:20px">Back Chapter</button></a>
+      <a href=""><button type="submit" class="button" style="margin:20px">Back Chapter</button></a>
 
       <a href="genesis2.html"><button type="submit" class="button" style="margin:20px">Next Chapter</button></a>
 </div>
